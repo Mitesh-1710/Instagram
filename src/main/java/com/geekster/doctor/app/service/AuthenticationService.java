@@ -17,7 +17,7 @@ public class AuthenticationService {
 	}
 
 	public AuthenticationEntity getToken(PatientEntity patient) {
-		return authenticationRepository.findByUser(patient);
+		return authenticationRepository.findByPatient(patient);
 
 	}
 	
