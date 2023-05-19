@@ -1,4 +1,4 @@
-# Spring Boot Project Instagram App.
+# Spring Boot Project Doctor App.
 
 - Frameworks and Language used :
   - Spring Boot `SNAPSHOT 3.0.6`
@@ -7,29 +7,44 @@
 - Data Flow :
   1. Controller
       <br/>
-      > User
-      - signup : This method is used to call the signup method of the service class to save the user data into the database.
-      - signin : This method is used to call the signin method of the service class which authenticate user based on their email and password.
-      - updateUser : This method is used to call the updateUser method of the service class to updated user data in the database based on selected user id.
+      > Patient
+      - signup : This method is used to call the signup method of the service class to save the patient data into the database.
+      - signin : This method is used to call the signin method of the service class which authenticate patient based on their email and password.
+      - getAllDoctors : This method is used to call the getAllDoctors method of the service class to get all doctor data from the database.
+      - cancelAppointment : This method is used to call the cancelAppointment method of the service class to cancel the appointment.
        
       <br/>
       
-      > Post
-      - savePost : This method is used to call the savePost method of the service class to save the post data into the database before saving user will be authenticated.
-      - getPost :  This method is used to call the getPost method of the service class to get the post data from the database based on selected post id before fetching user will be authenticated.
+      > Appointment
+      - bookAppointment : This method is used to call the bookAppointment method of the service class to book an appointment of the patient.
+         
+      <br/>
+      
+      > Doctor
+      - addDoctors : This method is used to call the addDoctors method of the service class save the doctor data into the database
+      - geMyAppointments : This method is used to call the geMyAppointments method of the service class to get all the doctors appointments data from the database
         
   2. Services
       <br/>
-      > User
+      > Patient
       - signup : This method is used to call the save method of the repository class to save the user data into the database.
       - signin :  This method is also used to call the getToken method of the authentication service class to authenticate user based on their email and password.
-      - updateUser :  This method is also used to call the save method of the repository class to updated the user data in the database based on selected user id before updating user will be authenticated.
+      - getAllDoctors :  This method is used to call the getAllDoctors method of the doctor service class to get all the the doctor data from the database.
+      - cancelAppointment : This method is used to call the cancelAppointment method of the appointment service class to cancel the appointment.
      
       <br/>
       
-      > Post
-      - addAddress : This method is used to call the save method of the repository class to save the post data into the database.
-      - getPost :  This method is used to call the findById method of the repository class to get the post data from the database based on selected post id.
+      > Doctor
+      - addDoctors : This method is used to call the save method of the repository class to save the appointment data into the database.
+      - geMyAppointments : This method is used to call the deleteById method of the repository class to delete the appointment data from the database.
+      
+       <br/>
+      
+      > Appointment
+      - bookAppointment : This method is used to call the save method of the repository class to save the doctors data into the database.
+      - getAllDoctors : This method is used to call the findAll method of the repository class to get all the doctors data from the database.
+      - getMyAppointments : This method is used to call the findByDoctorId method of the repository class to get all the doctor's appointments data from the database.
+      
       
       <br/>
       
@@ -42,12 +57,10 @@
       - Used `Predefined` JpaRepository methods such as findById , save for basic CRUD operations.
       
       <br/>
-      
       > User
       - findFirstByEmail `Userdefined` : This method is used to get the user data from the database based on user email.
        
       <br/>
-      
       > Authentication
       - findByUser `Userdefined` : This method is used to get the authentication data from the database based on user.
       - findFirstByToken `Userdefined` : This method is used to get the token data from the database based on token.
@@ -55,15 +68,21 @@
   4. Database Design
       - Used MySQL Database
       ```
-      	table user (
-       	id bigint not null auto_increment,
-        	age integer not null,
-        	email varchar(255) not null,
-        	first_name varchar(255) not null,
-        	last_name varchar(255) not null,
-        	password varchar(255) not null,
-        	phone_number varchar(255) not null,
-        	primary key (id)
+	    table patient (
+	    id bigint not null auto_increment,
+	        email varchar(255) not null,
+	        first_name varchar(255) not null,
+	        last_name varchar(255) not null,
+	        password varchar(255) not null,
+	        phone_number varchar(255) not null,
+	        primary key (id)
+	    )
+      
+      	table doctor (
+       	doctor_id bigint not null auto_increment,
+        	doctor_name varchar(255),
+        	specialization varchar(255),
+        	primary key (doctor_id)
     	)
       
        	table authentication (
@@ -74,13 +93,12 @@
         	primary key (id)
     	)
     	
-		table post (
-       	id bigint not null auto_increment,
-        	created_date datetime(6) not null,
-        	post_data varchar(255) not null,
-        	updated_date datetime(6) not null,
-        	user_id bigint,
-        	primary key (id)
+		table appointment (
+       	app_id bigint not null,
+        	time datetime(6) not null,
+        	fk_doctor_doc_id bigint,
+        	patient_id bigint,
+        	primary key (app_id, time)
     	)
       ```
    
@@ -89,8 +107,8 @@
 
 - Project Summary :
 ```
-  This is a Spring Boot project of Instagram App. User can register themselves by filling the required information.
+  This is a Spring Boot project of Doctor App. User(Patient/Doctor) can register themselves by filling the required information.
   Upon registration basic validation applied to the filled data if all the validation passes then and only then a data is registered into the system.
-  Once registered User can able to signin into the app, can able fetch their saved information , can able to update the information ,
-  as well as can able to created new post and able to see the post's information.
+  Once registered User can able to signin into the app, can able fetch their saved information. Patient can book appointment as we as can able to
+  see the booked appointment details. Doctor can fetch and see all the appointment data booked under their name.
 ```
