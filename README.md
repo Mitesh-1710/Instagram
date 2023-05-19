@@ -57,10 +57,12 @@
       - Used `Predefined` JpaRepository methods such as findById , save for basic CRUD operations.
       
       <br/>
+      
       > User
       - findFirstByEmail `Userdefined` : This method is used to get the user data from the database based on user email.
        
       <br/>
+      
       > Authentication
       - findByUser `Userdefined` : This method is used to get the authentication data from the database based on user.
       - findFirstByToken `Userdefined` : This method is used to get the token data from the database based on token.
