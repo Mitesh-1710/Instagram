@@ -9,7 +9,7 @@ import com.geekster.doctor.app.entity.PatientEntity;
 @Repository
 public interface AuthenticationRepository extends JpaRepository<AuthenticationEntity, Long> {
 
-	public AuthenticationEntity findByUser(PatientEntity user);
+	public AuthenticationEntity findByPatient(PatientEntity patient);
 
 	public AuthenticationEntity findFirstByToken(String token);
 

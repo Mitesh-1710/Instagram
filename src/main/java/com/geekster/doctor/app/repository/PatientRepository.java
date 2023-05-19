@@ -6,5 +6,5 @@ import com.geekster.doctor.app.entity.PatientEntity;
 
 public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
 
-	public PatientEntity findFirstByPatientEmail(String userEmail);
+	public PatientEntity findFirstByEmail(String email);
 }

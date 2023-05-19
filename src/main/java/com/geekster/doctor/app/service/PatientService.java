@@ -38,7 +38,7 @@ public class PatientService {
 
 	public ApplicationResponse signUp(PatientEntity patient) {
 
-		PatientEntity patientExists = patientRepository.findFirstByPatientEmail(patient.getEmail());
+		PatientEntity patientExists = patientRepository.findFirstByEmail(patient.getEmail());
 		ApplicationResponse applicationResponse = new ApplicationResponse();
 		if (patientExists != null) {
 			applicationResponse.setMessage("Patient already exists!!!!...sign in instead");
@@ -81,7 +81,7 @@ public class PatientService {
 
 	public SignInResponse signIn(SignIn signInInput) {
 
-		PatientEntity patient = patientRepository.findFirstByPatientEmail(signInInput.getEmail());
+		PatientEntity patient = patientRepository.findFirstByEmail(signInInput.getEmail());
 		SignInResponse signInResponse = new SignInResponse();
 		if (patient == null) {
 			signInResponse.setMessage("Patient not registered...please sign up");

@@ -16,17 +16,17 @@ public class AuthenticationService {
 		authenticationRepository.save(authenticationEntity);
 	}
 
-	public AuthenticationEntity getToken(PatientEntity user) {
-		return authenticationRepository.findByUser(user);
+	public AuthenticationEntity getToken(PatientEntity patient) {
+		return authenticationRepository.findByUser(patient);
 
 	}
 	
-	 public boolean authenticate(String userEmail, String token) {
+	 public boolean authenticate(String email, String token) {
 		 AuthenticationEntity authToken = authenticationRepository.findFirstByToken(token);
 		 boolean isAuthenticated = false;
 		 if(authToken != null) {
 			 String expectedEmail = authToken.getPatient().getEmail();
-			 if(expectedEmail.equals(userEmail)) {
+			 if(expectedEmail.equals(email)) {
 				 isAuthenticated = true;
 			 }
 		 }
