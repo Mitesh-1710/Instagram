@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.geekster</groupId>
-	<artifactId>instagram</artifactId>
+	<artifactId>doctor.app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>instagram</name>
-	<description>Spring Boot project of Instagram App.</description>
+	<name>doctor.app</name>
+	<description>Spring Boot project of Doctor App.</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
