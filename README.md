@@ -1,4 +1,4 @@
-# Spring Boot Project Instagram App.
+# Spring Boot Project Instagram App (In Progress).
 
 - Frameworks and Language used :
   - Spring Boot `SNAPSHOT 3.0.6`
